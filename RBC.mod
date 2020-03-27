@@ -28,22 +28,22 @@
 // Baseline RBC vs. Baxter-King Productive Externalities
 // 0 = Baseline RBC Model
 // 1 = Externalities
-@#define externalities = 0
+@#define externalities = 1
 
 
 
 // Endogenous variables
 var
 y                 (long_name='Output')
-w                 (long_name='Wages')
-r                 (long_name='Capital Demand')
 c                 (long_name='Consumption')
 lambda            (long_name='Marginal Utility of Consumption')
 h                 (long_name='Hours Worked')
-g                 (long_name='Government Spending')
 k                 (long_name='Capital')
-z                 (long_name='Technology')
 i                 (long_name='Investment')
+w                 (long_name='Wages')
+r                 (long_name='Capital Demand')
+z                 (long_name='Technology')
+g                 (long_name='Government Spending')
 zeta              (long_name='Time-varying Preferences')
 ;
 
@@ -68,8 +68,8 @@ chi        = 1;          // GHH Preferences: Scale Parameter
 rho_z      = 0.99;       // AR(1) Technology
 rho_g      = 0.90;       // AR(1) Government
 rho_zeta   = 0.90;       // AR(1) Preferences
-sig_z      = 1/s_H;      // Std of Technology Shock (in percent)
-sig_g      = 1/s_G;      // Std of Government Shock (in percent)
+sig_z      = 1;          // Std of Technology Shock (in percent)
+sig_g      = 1;          // Std of Government Shock (in percent)
 sig_zeta   = 1;          // Std of Preference Shock (in percent)
 
 
@@ -89,7 +89,7 @@ lambda = (1 - beta + beta * delta) * r(+1) + lambda(+1);                        
 
 @#if externalities
 y      = s_K * gamma/epsilon_KH * k(-1) + s_H * gamma/epsilon_KH * (z + h);     // Production Function
-r      = s_H * gamma (z + h) + (s_K * gamma - 1) * k(-1);                       // Capital Demand
+r      = s_H * gamma * (z + h) + (s_K * gamma - 1) * k(-1);                       // Capital Demand
 w      = s_K * gamma * k(-1) + s_H * gamma * z + (s_H * gamma -1) * h;          // Labor Demand
 @#else
 y      = s_K/epsilon_KH * k(-1) + s_H/epsilon_KH * (z + h);                     // Production Function
@@ -132,6 +132,6 @@ check;
 ///////////////////////////////////////////////////////
 
 
-//@#include "Technology_Shock.mod"
-@#include "Government_Spending_Shock.mod"
+@#include "Technology_Shock.mod"
+//@#include "Government_Spending_Shock.mod"
 //@#include "Preference_Shock.mod"
