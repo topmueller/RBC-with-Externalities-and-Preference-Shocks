@@ -24,6 +24,12 @@ else
 num_2 = '0';
 end
 
+//create structure name: externalities(ext)
+@#if externalities
+num_2 = [num_2 '_ext'];
+@#endif
+
+
 //create Matlab file
 @#if preferences
 if exist('GHH_irfs.mat', 'file') == 0
@@ -71,6 +77,10 @@ legend(sprintf('KPR preferences with \\gamma = %g', gamma), 'fontSize',10); //ad
 end
 
 title([M_.endo_names_long{jj} ' (' var_names{jj} ')']); //Use variable names stored in M_.endo_names
+@#if externalities
 sgtitle('IRFs to a Technology Shock', 'fontSize',14);
+@#else
+sgtitle('IRFs to a Technology Shock with Externalities', 'fontSize',14);
+@#endif
 
 end
