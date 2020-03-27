@@ -18,8 +18,11 @@ var_names_long = M_.endo_names_long;
 //get decimal number of gamma
 x     = num2str(gamma);
 num_1 = x(1);
+if strlength(x) > 2
 num_2 = x(3);
-
+else
+num_2 = '0';
+end
 
 //create Matlab file
 @#if preferences

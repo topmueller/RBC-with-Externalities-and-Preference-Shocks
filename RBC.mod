@@ -62,7 +62,7 @@ epsilon_KH = 1;          // Allen Elasticity of Substitution
 phi        = 0.25;       // Inverse Labor Supply Elasticity
 beta       = 0.99;       // Discount Factor
 delta      = 0.025;      // Depreciation Rate
-gamma      = 1.5;        // Degree of Market Power
+gamma      = 1.00;        // Degree of Market Power
 chi        = 1;          // GHH Preferences: Scale Parameter
 
 rho_z      = 0.99;       // AR(1) Technology
@@ -89,7 +89,7 @@ lambda = (1 - beta + beta * delta) * r(+1) + lambda(+1);                        
 
 @#if externalities
 y      = s_K * gamma/epsilon_KH * k(-1) + s_H * gamma/epsilon_KH * (z + h);     // Production Function
-r      = s_H * gamma * (z + h) + (s_K * gamma - 1) * k(-1);                       // Capital Demand
+r      = s_H * gamma * (z + h) + (s_K * gamma - 1) * k(-1);                     // Capital Demand
 w      = s_K * gamma * k(-1) + s_H * gamma * z + (s_H * gamma -1) * h;          // Labor Demand
 @#else
 y      = s_K/epsilon_KH * k(-1) + s_H/epsilon_KH * (z + h);                     // Production Function
