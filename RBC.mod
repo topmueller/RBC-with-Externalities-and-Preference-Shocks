@@ -1,11 +1,12 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                                                                                                                         //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Tobias Mueller                                                                                                             //
 // April 2020                                                                                                                 //
-//                                                                                                                            //                                                                                                                          //
-// Replication of a Standard RBC Model with Different Labor Supply Assumptions                                                //
+//                                                                                                                            //
+// Replication of a Standard RBC Model with Different Labor Supply Assumptions and Externalities                              //
 // 1) King–Plosser–Rebelo preferences                                                                                         //
 // 2) Greenwood-Hercowitz-Huffman preferences                                                                                 //
-//                                                                                                                            //                                                                                                                        //
+//                                                                                                                            //
+// 3) Baxter-King(1991): Productive Externalities and Business Cycles                                                            //
 //                                                                                                                            //
 // Dynare 4.6.1 and MATLAB R2019a are used for Computations                                                                   //
 //                                                                                                                            //
@@ -23,6 +24,13 @@
 // 1 = Greenwood-Hercowitz-Huffman preferences
 @#define preferences = 0
 
+//Switch On (1) and Off (0) between Various Model Settings
+// Baseline RBC vs. Baxter-King Productive Externalities
+// 0 = Baseline RBC Model
+// 1 = Externalities
+@#define externalities = 0
+
+
 
 // Endogenous variables
 var
@@ -36,13 +44,14 @@ g                 (long_name='Government Spending')
 k                 (long_name='Capital')
 z                 (long_name='Technology')
 i                 (long_name='Investment')
+zeta              (long_name='Time-varying Preferences')
 ;
 
 // Exogenous variables
-varexo eta_z eta_g;
+varexo eta_z eta_g eta_zeta;
 
 // Parameters
-parameters s_H s_K s_C s_G epsilon_KH phi beta delta rho_z rho_g sig_z sig_g chi;
+parameters s_H s_K s_C s_G epsilon_KH phi beta delta gamma chi rho_z rho_g rho_zeta sig_z sig_g sig_zeta;
 
 // Initialization of parameters
 s_H        = 0.67;       // Labor Share
@@ -53,12 +62,17 @@ epsilon_KH = 1;          // Allen Elasticity of Substitution
 phi        = 0.25;       // Inverse Labor Supply Elasticity
 beta       = 0.99;       // Discount Factor
 delta      = 0.025;      // Depreciation Rate
+gamma      = 1.5;        // Degree of Market Power
+chi        = 1;          // GHH Preferences: Scale Parameter
+
 rho_z      = 0.99;       // AR(1) Technology
 rho_g      = 0.90;       // AR(1) Government
+rho_zeta   = 0.90;       // AR(1) Preferences
 sig_z      = 1/s_H;      // Std of Technology Shock (in percent)
 sig_g      = 1/s_G;      // Std of Government Shock (in percent)
+sig_zeta   = 1;          // Std of Preference Shock (in percent)
 
-chi        = 1;          // GHH Preferences: Scale Parameter
+
 
 
 //the model
@@ -68,18 +82,27 @@ lambda = - (1 / (s_C - chi * (s_H/ (1+phi) ))) * (s_C * c - chi * s_H * h);     
 h      = 1/phi * w;                                                             // Frisch Labor Supply
 @#else
 lambda = (-1) * c;                                                              // Marginal Utility of Consumption
-h      = 1/phi * (w + lambda);                                                  // Frisch Labor Supply
+h      = 1/phi * (w + lambda - zeta);                                           // Frisch Labor Supply
 @#endif
 
 lambda = (1 - beta + beta * delta) * r(+1) + lambda(+1);                        // Euler Equation
+
+@#if externalities
+y      = s_K * gamma/epsilon_KH * k(-1) + s_H * gamma/epsilon_KH * (z + h);     // Production Function
+r      = s_H * gamma (z + h) + (s_K * gamma - 1) * k(-1);                       // Capital Demand
+w      = s_K * gamma * k(-1) + s_H * gamma * z + (s_H * gamma -1) * h;          // Labor Demand
+@#else
 y      = s_K/epsilon_KH * k(-1) + s_H/epsilon_KH * (z + h);                     // Production Function
-k      = (1-delta) * k(-1) + delta * i;                                         // Evolution of Capital
 r      = s_H * (z + h - k(-1));                                                 // Capital Demand
 w      = s_K * (k(-1) - h) + s_H * z;                                           // Labor Demand
+@#endif
+
 y      = s_C * c + s_G * g + (1 - s_C - s_G) * i;                               // Aggregate Constraint
+k      = (1-delta) * k(-1) + delta * i;                                         // Evolution of Capital
 
 z      = rho_z * z(-1) + sig_z * eta_z;                                         // AR(1) Technology Shock
 g      = rho_g * g(-1) + sig_g * eta_g;                                         // AR(1) Government Shock
+zeta   = rho_zeta * zeta(-1) + sig_zeta * eta_zeta;                             // AR(1) Preference Shock
 end;
 
 
@@ -110,4 +133,5 @@ check;
 
 
 //@#include "Technology_Shock.mod"
-@#include "Government_Spending_shock.mod"
+@#include "Government_Spending_Shock.mod"
+//@#include "Preference_Shock.mod"
