@@ -1,32 +1,218 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+# Generic ignore rules
+*~
 *.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
 *.a
-*.lib
+*.fig
+\#*\#
+TAGS
+*.mat
+*.xls
+*.xlsx
+*.m
+*.log
+*.eps
+*.asv
+.Rhistory
 
-# Executables
-*.exe
+# Build system rules
+.deps
+Makefile
+Makefile.in
+configure
+config.log
+config.status
+aclocal.m4
+autom4te.cache
+config.guess
+config.sub
+depcomp
+install-sh
+/missing
+/mex/build/matlab/missing
+/mex/build/octave/missing
+/compile
+/mex/build/matlab/compile
+/mex/build/octave/compile
+ylwrap
+ar-lib
+
+# checksum associated with fast option
+checksum
+
+# Make Check Rules
+*.trs
+
+# Doc rules
+*.pdf
+*.aux
+*.log
 *.out
-*.app
+*.toc
+*.idx
+*.scn
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.blg
+*.lof
+/doc/dynare.html
+/doc/dynare.info
+/doc/dynare.info-1
+/doc/dynare.info-2
+/doc/dynare.info-3
+/doc/dynare.cp
+/doc/dynare.fn
+/doc/dynare.fns
+/doc/dynare.vrs
+/doc/dynare.ky
+/doc/dynare.pg
+/doc/dynare.tp
+/doc/dynare.vr
+/doc/dynare.t2p/*
+/doc/texinfo.tex
+/doc/version.texi
+/doc/mdate-sh
+/doc/stamp-vti
+!/doc/guide.bbl
+!/doc/macroprocessor/new-design.pdf
+!/doc/macroprocessor/old-design.pdf
+!/doc/userguide/P_ModStruct3.pdf
+!/doc/userguide/P_MH2.pdf
+!/doc/userguide/P_flowest.pdf
+!/doc/userguide/P_ModStruct4.pdf
+!/doc/userguide/Graphics/DynareFigures.key/droppedImage-2.pdf
+!/doc/userguide/Graphics/DynareFigures.key/droppedImage.pdf
+!/doc/userguide/Graphics/DynareFigures.key/droppedImage-1.pdf
+!/doc/userguide/Graphics/DynareTitle.pdf
+!/doc/userguide/P_ModStruct5.pdf
+!/doc/userguide/P_DynareStruct2.pdf
+!/doc/userguide/P_SchorfMod.pdf
+!/doc/userguide/P_ModStruct2.pdf
+!/doc/userguide/P_ShockModel2.pdf
+!/doc/parallel/AvenueParadigm.pdf
+!/doc/parallel/iVaNo_*.pdf
+!/doc/parallel/netbook_*.pdf
+!/doc/parallel/quest_*.pdf
+!/doc/parallel/RWMH_quest1_*.pdf
+!/doc/parallel/waitbars*.pdf
+doc/m2html
+doc/internals/*.html
+doc/internals/ltxpng
+mex/build/matlab/run_m2html.m
+
+# Preprocessor
+/preprocessor/dynare_m
+/preprocessor/dynare_m.exe
+/preprocessor/DynareBison.cc
+/preprocessor/DynareBison.hh
+/preprocessor/FlexLexer.h
+/preprocessor/DynareFlex.cc
+/preprocessor/location.hh
+/preprocessor/position.hh
+/preprocessor/stack.hh
+/preprocessor/macro/MacroBison.cc
+/preprocessor/macro/MacroBison.hh
+/preprocessor/macro/MacroFlex.cc
+/preprocessor/macro/location.hh
+/preprocessor/macro/position.hh
+/preprocessor/macro/stack.hh
+/preprocessor/doc/
+
+# MATLAB dir
+/matlab/preprocessor*
+/matlab/dynare_version.m
+
+# JULIA dir
+/julia/preprocessor*
+
+# DLL rules
+*.mex
+*.dll
+*.oct
+*.mexglx
+*.mexa64
+*.mexw32
+*.mexw64
+*.mexmaci
+*.mexmaci64
+/mex/matlab/
+/mex/octave/
+
+# Dynare++
+/dynare++/integ/cc/*.cpp
+/dynare++/integ/cc/*.h
+/dynare++/integ/cc/main.tex
+/dynare++/integ/src/quadrature-points
+/dynare++/integ/src/quadrature-points.exe
+/dynare++/integ/testing/tests
+/dynare++/kord/*.cpp
+!/dynare++/kord/tests.cpp
+/dynare++/kord/*.h
+/dynare++/kord/main.tex
+/dynare++/kord/tests
+/dynare++/kord/tests.exe
+/dynare++/kord/out.txt
+/dynare++/sylv/testing/*.mm
+/dynare++/sylv/testing/tests
+/dynare++/sylv/testing/tests.exe
+/dynare++/parser/cc/*_ll.cc
+/dynare++/parser/cc/*_tab.cc
+/dynare++/parser/cc/*_tab.hh
+/dynare++/src/dynare++
+/dynare++/src/dynare++.exe
+/dynare++/src/dynglob_ll.cc
+/dynare++/src/dynglob_tab.cc
+/dynare++/src/dynglob_tab.hh
+/dynare++/tl/cc/*.cpp
+/dynare++/tl/cc/*.h
+/dynare++/tl/cc/main.tex
+/dynare++/tl/testing/tests
+/dynare++/tl/testing/tests.exe
+!/dynare++/extern/R/Makefile
+
+# Windows
+/windows/dynare-version.nsi
+
+# Estimation DLL tests
+/mex/sources/estimation/tests/test-dr
+/mex/sources/estimation/tests/test-dr.exe
+/mex/sources/estimation/tests/testModelSolution
+/mex/sources/estimation/tests/testModelSolution.exe
+/mex/sources/estimation/tests/testInitKalman
+/mex/sources/estimation/tests/testInitKalman.exe
+/mex/sources/estimation/tests/testKalman
+/mex/sources/estimation/tests/testKalman.exe
+/mex/sources/estimation/tests/testPDF
+/mex/sources/estimation/tests/testPDF.exe
+/mex/sources/estimation/libmat/tests/test-qr
+/mex/sources/estimation/libmat/tests/test-qr.exe
+/mex/sources/estimation/libmat/tests/test-gsd
+/mex/sources/estimation/libmat/tests/test-gsd.exe
+/mex/sources/estimation/libmat/tests/test-lu
+/mex/sources/estimation/libmat/tests/test-lu.exe
+/mex/sources/estimation/libmat/tests/test-repmat
+/mex/sources/estimation/libmat/tests/test-repmat.exe
+
+# MacOS stuff
+.DS_Store
+
+# MS-Sbvar
+/contrib/ms-sbvar/*.prn
+/contrib/ms-sbvar/*.dat
+/contrib/ms-sbvar/sbvar_commandline
+/contrib/ms-sbvar/sbvar_init_file
+/tests/ms-sbvar/*.tmp
+
+# Reporting
+*synctex.gz
+tests/reporting/tmpRepDir
+
+# Julia Tests
+tests/julia/rbc/rbc*.jl
+
+# Octave variables saved when Octave crashes
+octave-workspace
+
+# VERSION generated file
+VERSION
