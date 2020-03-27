@@ -62,14 +62,14 @@ epsilon_KH = 1;          // Allen Elasticity of Substitution
 phi        = 0.25;       // Inverse Labor Supply Elasticity
 beta       = 0.99;       // Discount Factor
 delta      = 0.025;      // Depreciation Rate
-gamma      = 1;        // Degree of Market Power
+gamma      = 1.5;        // Degree of Market Power
 
 rho_z      = 0.99;       // AR(1) Technology
 rho_g      = 0.90;       // AR(1) Government
 rho_zeta   = 0.90;       // AR(1) Preferences
 sig_z      = 1;          // Std of Technology Shock (in percent)
 sig_g      = 1;          // Std of Government Shock (in percent)
-sig_zeta   = 1;          // Std of Preference Shock (in percent)
+sig_zeta   = -1;         // Std of Preference Shock (in percent)
 
 
 

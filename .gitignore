@@ -8,11 +8,15 @@ TAGS
 *.mat
 *.xls
 *.xlsx
-*.m
 *.log
 *.eps
 *.asv
 .Rhistory
+
+
+/*
+
+
 
 # Build system rules
 .deps
