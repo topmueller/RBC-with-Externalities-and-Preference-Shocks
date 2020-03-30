@@ -28,7 +28,7 @@
 // Baseline RBC vs. Baxter-King Productive Externalities
 // 0 = Baseline RBC Model
 // 1 = Externalities
-@#define externalities = 1
+@#define externalities = 0
 
 
 
@@ -62,7 +62,7 @@ epsilon_KH = 1;          // Allen Elasticity of Substitution
 phi        = 0.25;       // Inverse Labor Supply Elasticity
 beta       = 0.99;       // Discount Factor
 delta      = 0.025;      // Depreciation Rate
-gamma      = 1.5;        // Degree of Market Power
+gamma      = 1;          // Degree of Market Power
 
 rho_z      = 0.99;       // AR(1) Technology
 rho_g      = 0.90;       // AR(1) Government
@@ -131,6 +131,6 @@ check;
 ///////////////////////////////////////////////////////
 
 
-//@#include "Technology_Shock.mod"
-//@#include "Government_Spending_Shock.mod"
+@#include "Technology_Shock.mod"
+@#include "Government_Spending_Shock.mod"
 @#include "Preference_Shock.mod"

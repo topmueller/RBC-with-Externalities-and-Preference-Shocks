@@ -1,6 +1,9 @@
-clear all
-load KPR_irfs 
-load GHH_irfs
+clear
+%load KPR_irfs_rho_0_9 
+%load GHH_irfs_rho_0_9
+load KPR_irfs_rho_0
+load GHH_irfs_rho_0
+
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
