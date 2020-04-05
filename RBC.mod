@@ -117,6 +117,7 @@ h       = 0;
 r       = 0;
 w       = 0;
 g       = 0;
+zeta    = 0;
 end;
 
 // Compute the steady state
