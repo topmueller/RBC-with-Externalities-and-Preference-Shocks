@@ -78,9 +78,9 @@ end
 
 title([M_.endo_names_long{jj} ' (' var_names{jj} ')']); //Use variable names stored in M_.endo_names
 @#if externalities
-sgtitle('IRFs to a Preference Shock', 'fontSize',14);
-@#else
 sgtitle('IRFs to a Preference Shock with Externalities', 'fontSize',14);
+@#else
+sgtitle('IRFs to a Preference Shock', 'fontSize',14);
 @#endif
 
 end
